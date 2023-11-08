@@ -14,6 +14,8 @@ class SignInProvider extends ChangeNotifier {
   TextEditingController get passwordController => _passwordController;
   TextEditingController get recoveryEmailController => _recoveryEmailController;
 
+  AuthController authController = AuthController();
+
 //Sign In user
 
   Future<void> signInUser() async {
@@ -56,5 +58,9 @@ class SignInProvider extends ChangeNotifier {
         _recoveryEmailController.text = "";
       });
     }
+  }
+
+  Future<void> signInWithGoogle() async {
+    final credential = await authController.signInWithGoogle();
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_filter/auth/forgotpwd_page.dart';
 import 'package:video_filter/auth/signup_page.dart';
-import 'package:video_filter/controllers/auth_controlller.dart';
 import 'package:video_filter/providers/signin_provider.dart';
 
 import '../custom-widgets/auth_background.dart';
@@ -137,7 +136,8 @@ class _SignInState extends State<SignIn> {
                               fsize: 16,
                               fweight: FontWeight.w600),
                           onTap: () {
-                            AuthController().signInWithGoogle();
+                            Provider.of<SignInProvider>(context, listen: false)
+                                .signInWithGoogle();
                           },
                         )
                       ]),

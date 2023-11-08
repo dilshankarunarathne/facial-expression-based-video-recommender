@@ -12,7 +12,20 @@
           "package_name": "lk.altier.video_filter"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "937429975478-g39ijd6a7eciccqsh1phc27nkev6vsgu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lk.altier.video_filter",
+            "certificate_hash": "d84a2783e468bb1c16719f4205819c654b136183"
+          }
+        },
+        {
+          "client_id": "937429975478-ef62kml41guninqoa0dt718flm0hc6v8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA7Dm1xqXboogqLSHTFkKb8SwbnGiBgLR8"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937429975478-ef62kml41guninqoa0dt718flm0hc6v8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
