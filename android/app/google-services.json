@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "937429975478",
+    "project_id": "video-filter-app-f7ddc",
+    "storage_bucket": "video-filter-app-f7ddc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937429975478:android:67a0ce6ff49c2b44ca0117",
+        "android_client_info": {
+          "package_name": "lk.altier.video_filter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7Dm1xqXboogqLSHTFkKb8SwbnGiBgLR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.video_filter
+package lk.altier.video_filter
 
 import io.flutter.embedding.android.FlutterActivity
 
