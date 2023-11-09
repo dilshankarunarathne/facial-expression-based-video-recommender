@@ -31,10 +31,10 @@ class AuthBackground extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: size.height * 0.22,
+                  height: size.height * 0.24,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(2.0),
+                  padding: const EdgeInsets.only(left: 8),
                   child: CustomPoppinsText(
                       text: text1,
                       color: Colors.white,
@@ -42,7 +42,7 @@ class AuthBackground extends StatelessWidget {
                       fweight: FontWeight.w500),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(2.0),
+                  padding: const EdgeInsets.only(left: 8),
                   child: CustomPoppinsText(
                       text: text2,
                       color: Colors.white,

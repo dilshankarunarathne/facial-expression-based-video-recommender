@@ -24,10 +24,11 @@ class SignUpProvider extends ChangeNotifier {
     } else {
       AuthController()
           .createUserAccount(
+        
         email: _emailController.text,
         password: _passwordController.text,
-      )
-          .then((value) {
+        
+      ).then((value) {
         clearTextField();
       });
     }
