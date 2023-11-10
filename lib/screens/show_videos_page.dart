@@ -32,6 +32,8 @@ class _ShowVideosState extends State<ShowVideos> {
 
     String? videoUrl = emotion != null ? emotionToVideo[emotion] : 'Unknown';
 
+    print('Video URL: $videoUrl'); // Debug print
+
     String? videoId;
     if (videoUrl != null) {
       videoId = YoutubePlayer.convertUrlToId(videoUrl);
