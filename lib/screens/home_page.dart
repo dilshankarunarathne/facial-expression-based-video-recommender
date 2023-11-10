@@ -153,7 +153,8 @@ class _HomePageState extends State<HomePage> {
                         : Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const EmotionViewPage(),
+                              builder: (context) =>
+                                  const EmotionViewPage(emotion: output),
                             ));
                   },
                   text: "Check Image",
