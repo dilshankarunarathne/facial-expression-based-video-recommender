@@ -23,24 +23,9 @@ class _ShowVideosState extends State<ShowVideos> {
   @override
   void initState() {
     super.initState();
-
-    String? emotion = widget.output != null && widget.output!.isNotEmpty
-        ? widget.output![0]["label"]
-        : null;
-
-    print('Emotion: $emotion'); // Debug print
-
-    String? videoUrl = emotion != null ? emotionToVideo[emotion] : 'Unknown';
-
-    print('Video URL: $videoUrl'); // Debug print
-
-    String? videoId;
-    if (videoUrl != null) {
-      videoId = YoutubePlayer.convertUrlToId(videoUrl);
-    }
-
+    String videoUrl = emotionToVideo[widget.output![0]["label"]] ?? '';
     _controller = YoutubePlayerController(
-      initialVideoId: videoId ?? 'dQw4w9WgXcQ',
+      initialVideoId: YoutubePlayer.convertUrlToId(videoUrl)!,
       flags: YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
@@ -51,23 +36,28 @@ class _ShowVideosState extends State<ShowVideos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        shrinkWrap: true,
-        itemCount: 1,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Container(
-              height: 200,
-              decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: YoutubePlayer(
-                controller: _controller,
-                showVideoProgressIndicator: true,
-              ),
+      body: Column(
+        children: [
+          YoutubePlayer(
+            controller: _controller,
+            showVideoProgressIndicator: true,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: emotionToVideo.length,
+              itemBuilder: (context, index) {
+                String title = emotionToVideo.keys.elementAt(index);
+                return ListTile(
+                  title: Text(title),
+                  onTap: () {
+                    String videoUrl = emotionToVideo[title] ?? '';
+                    _controller.load(YoutubePlayer.convertUrlToId(videoUrl)!);
+                  },
+                );
+              },
             ),
-          );
-        },
+          ),
+        ],
       ),
     );
   }
