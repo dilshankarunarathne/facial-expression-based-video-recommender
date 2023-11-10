@@ -21,6 +21,8 @@ class _HomePageState extends State<HomePage> {
 
   final imagePicker = ImagePicker();
 
+  var output = null;
+
   @override
   void initState() {
     super.initState();
@@ -46,7 +48,7 @@ class _HomePageState extends State<HomePage> {
   Future runModelOnImage(File? image) async {
     if (image == null) return;
 
-    var output = await Tflite.runModelOnImage(
+    output = await Tflite.runModelOnImage(
       path: image.path,
       imageMean: 0.0, // depends on your model
       imageStd: 255.0, // depends on your model
