@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tflite/tflite.dart';
 import 'package:video_filter/controllers/auth_controlller.dart';
+import 'package:video_filter/custom-widgets/circular_indicator.dart';
 import 'package:video_filter/custom-widgets/custom_button.dart';
 import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/imotion_view_page.dart';
-import 'package:tflite/tflite.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,8 +20,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   File? _image;
-  final imagePicker = ImagePicker();
   late String output;
+  final imagePicker = ImagePicker();
 
   Future getImage() async {
     final image = await imagePicker.pickImage(source: ImageSource.camera);
@@ -57,12 +58,6 @@ class _HomePageState extends State<HomePage> {
     }
 
     print(output);
-  }
-
-  @override
-  void dispose() {
-    Tflite.close();
-    super.dispose();
   }
 
   @override
