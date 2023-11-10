@@ -28,17 +28,24 @@ class _ShowVideosState extends State<ShowVideos> {
         ? widget.output![0]["label"]
         : null;
 
-    String? videoUrl = emotion != null ? emotionToVideo[emotion] : '';
+    print('Emotion: $emotion'); // Debug print
 
-    if (videoUrl != null && videoUrl.isNotEmpty) {
-      _controller = YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(videoUrl),
-        flags: YoutubePlayerFlags(
-          autoPlay: true,
-          mute: false,
-        ),
-      );
+    String? videoUrl = emotion != null ? emotionToVideo[emotion] : 'Unknown';
+
+    String? videoId;
+    if (videoUrl != null) {
+      videoId = YoutubePlayer.convertUrlToId(videoUrl);
     }
+
+    // Initialize _controller with a default video if videoId is null
+    _controller = YoutubePlayerController(
+      initialVideoId: videoId ??
+          'dQw4w9WgXcQ', // Replace 'dQw4w9WgXcQ' with the ID of your default video
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+      ),
+    );
   }
 
   @override
