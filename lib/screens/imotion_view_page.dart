@@ -85,7 +85,8 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ShowVideos(),
+                            builder: (context) =>
+                                ShowVideos(output: widget.output),
                           ));
                     },
                     text: "Next",
