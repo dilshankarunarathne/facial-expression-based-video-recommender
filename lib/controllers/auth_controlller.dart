@@ -30,7 +30,7 @@ class AuthController {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomePage(),
+                builder: (context) => HomePage(),
               ));
 
           print('User is signed in!');
@@ -53,15 +53,14 @@ class AuthController {
     await FirebaseAuth.instance.signOut();
     CircularIndicator(isVisible: false);
     Fluttertoast.showToast(
-          msg: "Signed Out",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey.shade800,
-          textColor: Colors.white,
-          fontSize: 16.0);
+        msg: "Signed Out",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey.shade800,
+        textColor: Colors.white,
+        fontSize: 16.0);
     Logger().i("User logout");
-    
   }
 
   //Sign In to usr account
@@ -96,15 +95,14 @@ class AuthController {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
-          Fluttertoast.showToast(
-              msg: "No user found for that email.",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        
+        Fluttertoast.showToast(
+            msg: "No user found for that email.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
         Fluttertoast.showToast(

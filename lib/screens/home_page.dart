@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tflite/tflite.dart';
 import 'package:video_filter/controllers/auth_controlller.dart';
 import 'package:video_filter/custom-widgets/circular_indicator.dart';
 import 'package:video_filter/custom-widgets/custom_button.dart';
@@ -19,7 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   File? _image;
-
+  late String output;
   final imagePicker = ImagePicker();
 
   Future getImage() async {
@@ -27,6 +28,36 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _image = File(image!.path);
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadModel();
+  }
+
+  Future loadModel() async {
+    Tflite.close();
+
+    (await Tflite.loadModel(
+        model: 'lib/assets/model.tflite', labels: 'lib/assets/labels.txt'))!;
+  }
+
+  Future imageClassification(File image) async {
+    var recognitions = await Tflite.runModelOnImage(
+        path: _image!.path,
+        imageMean: 127.5,
+        imageStd: 127.5,
+        threshold: 0.1,
+        asynch: true,
+        numResults: 1);
+    for (var element in recognitions!) {
+      setState(() {
+        output = element['label'];
+      });
+    }
+
+    print(output);
   }
 
   @override
@@ -128,14 +159,19 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             );
+                            loadModel();
+                          imageClassification(_image!);
                       Future.delayed(
                         const Duration(seconds: 4),
                         () {
+                          
                           CircularIndicator(isVisible: false);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const EmotionViewPage(),
+                                builder: (context) => EmotionViewPage(
+                                  output: output,
+                                ),
                               ));
                         },
                       );

@@ -5,14 +5,12 @@ import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/home_page.dart';
 import 'package:video_filter/screens/show_videos_page.dart';
 
-class EmotionViewPage extends StatefulWidget {
-  const EmotionViewPage({super.key});
+import '../custom-widgets/emotion_icon.dart';
 
-  @override
-  State<EmotionViewPage> createState() => _EmotionViewPageState();
-}
-
-class _EmotionViewPageState extends State<EmotionViewPage> {
+// ignore: must_be_immutable
+class EmotionViewPage extends StatelessWidget {
+  EmotionViewPage({super.key, required this.output});
+  String output;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -53,13 +51,9 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.emoji_emotions_rounded,
-                            color: Colors.amber.shade500,
-                            size: 80,
-                          ),
+                          EmotionIcon(output: output),
                           CustomPoppinsText(
-                              text: "Happy Mood",
+                              text: output,
                               color: Colors.white,
                               fsize: 35,
                               fweight: FontWeight.w500)
