@@ -41,19 +41,21 @@ class _HomePageState extends State<HomePage> {
         model: 'lib/assets/model.tflite', labels: 'lib/assets/labels.txt'))!;
   }
 
-  Future runModelOnImage(File? image) async {
-    if (image == null) return;
+  Future imageClassification(File image) async {
+    var recognitions = await Tflite.runModelOnImage(
+        path: _image!.path,
+        imageMean: 127.5,
+        imageStd: 127.5,
+        threshold: 0.1,
+        asynch: true,
+        numResults: 1);
+    for (var element in recognitions!) {
+      setState(() {
+        output = element['label'];
+      });
+    }
 
-    var output = await Tflite.runModelOnImage(
-      path: image.path,
-      imageMean: 0.0,
-      imageStd: 255.0,
-      numResults: 4,
-      threshold: 0.2,
-      asynch: true,
-    );
-
-    emotion = output;
+    print(output);
   }
 
   @override
