@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ShowVideos extends StatefulWidget {
   final List<dynamic>? output;
 
-  const ShowVideos({super.key});
+  const ShowVideos({Key? key, this.output}) : super(key: key);
 
   @override
   State<ShowVideos> createState() => _ShowVideosState();
