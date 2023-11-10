@@ -40,8 +40,7 @@ class _ShowVideosState extends State<ShowVideos> {
     }
 
     _controller = YoutubePlayerController(
-      initialVideoId: videoId ??
-          'dQw4w9WgXcQ', // Replace 'dQw4w9WgXcQ' with the ID of your default video
+      initialVideoId: videoId ?? 'dQw4w9WgXcQ',
       flags: YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
