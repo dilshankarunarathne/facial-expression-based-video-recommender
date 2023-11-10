@@ -43,6 +43,18 @@ class _HomePageState extends State<HomePage> {
     runModelOnImage(_image);
   }
 
+  Future runModelOnImage(File? image) async {
+    if (image == null) return;
+
+    var output = await Tflite.runModelOnImage(
+      path: image.path,
+      imageMean: 0.0,   // depends on your model
+      imageStd: 255.0,  // depends on your model
+      numResults: 2,    // the number of output classes
+      threshold: 0.2,   // the output score threshold
+      asynch: true,
+    );
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
