@@ -14,7 +14,7 @@ class _ShowVideosState extends State<ShowVideos> {
   late YoutubePlayerController _controller;
   Map<String, List<String>> emotionToVideo = {
     'Happy': [
-      'https://www.youtube.com/watch?v=5qap5aO4i9A',
+      'https://www.youtube.com/watch?v=CvaPziI1SPc',
       'https://www.youtube.com/watch?v=5qap5aO4i9A',
       'https://www.youtube.com/watch?v=5qap5aO4i9A',
       'https://www.youtube.com/watch?v=5qap5aO4i9A',
