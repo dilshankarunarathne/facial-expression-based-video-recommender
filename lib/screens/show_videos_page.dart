@@ -23,14 +23,22 @@ class _ShowVideosState extends State<ShowVideos> {
   @override
   void initState() {
     super.initState();
-    String videoUrl = emotionToVideo[widget.output![0]["label"]] ?? '';
-    _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(videoUrl)!,
-      flags: YoutubePlayerFlags(
-        autoPlay: true,
-        mute: false,
-      ),
-    );
+
+    String? emotion = widget.output != null && widget.output!.isNotEmpty
+        ? widget.output![0]["label"]
+        : null;
+
+    String? videoUrl = emotion != null ? emotionToVideo[emotion] : '';
+
+    if (videoUrl != null && videoUrl.isNotEmpty) {
+      _controller = YoutubePlayerController(
+        initialVideoId: YoutubePlayer.convertUrlToId(videoUrl),
+        flags: YoutubePlayerFlags(
+          autoPlay: true,
+          mute: false,
+        ),
+      );
+    }
   }
 
   @override
