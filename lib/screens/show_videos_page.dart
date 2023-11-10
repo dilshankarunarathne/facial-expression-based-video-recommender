@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ShowVideos extends StatefulWidget {
+  final List<dynamic>? output;
+
   const ShowVideos({super.key});
 
   @override
