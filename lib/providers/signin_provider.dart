@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:logger/logger.dart';
 import 'package:video_filter/auth/sign_in_page.dart';
 import 'package:video_filter/controllers/auth_controlller.dart';
+import 'package:video_filter/custom-widgets/circular_indicator.dart';
 
 class SignInProvider extends ChangeNotifier {
   final TextEditingController _emailController = TextEditingController();
@@ -18,16 +19,17 @@ class SignInProvider extends ChangeNotifier {
 
 //Sign In user
 
-  Future<void> signInUser() async {
+  Future<void> signInUser(BuildContext context) async {
     if (_emailController.text.isEmpty) {
       Logger().e("Check Your Email");
     } else if (_passwordController.text.isEmpty) {
       Logger().e("Check Your Password");
     } else {
       AuthController.signInUser(
-              emailAddress: _emailController.text,
-              password: _passwordController.text)
-          .then((value) {
+        emailAddress: _emailController.text,
+        password: _passwordController.text,
+        context: context,
+      ).then((value) {
         _emailController.text = "";
         _passwordController.text = "";
       });
@@ -46,15 +48,29 @@ class SignInProvider extends ChangeNotifier {
             msg: "Email sent to ${_recoveryEmailController.text}",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.SNACKBAR,
-            timeInSecForIosWeb: 5,
-            backgroundColor: Colors.red,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Colors.blueAccent,
             textColor: Colors.white,
             fontSize: 16.0);
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const SignIn(),
-            ));
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: CircularIndicator(isVisible: true),
+            );
+          },
+        );
+        Future.delayed(
+          const Duration(seconds: 4),
+          () {
+            CircularIndicator(isVisible: false);
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SignIn(),
+                ));
+          },
+        );
         _recoveryEmailController.text = "";
       });
     }
