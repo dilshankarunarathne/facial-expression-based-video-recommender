@@ -57,6 +57,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void dispose() {
+    Tflite.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
