@@ -81,12 +81,9 @@ class _ShowVideosState extends State<ShowVideos> {
         child: Scaffold(
           body: Column(
             children: [
-              SizedBox(
-                width: size.width,
-                child: YoutubePlayer(
-                  controller: _controller,
-                  showVideoProgressIndicator: true,
-                ),
+              YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: true,
               ),
               Expanded(
                 child: ListView.builder(
