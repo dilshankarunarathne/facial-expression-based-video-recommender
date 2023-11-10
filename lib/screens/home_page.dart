@@ -52,7 +52,6 @@ class _HomePageState extends State<HomePage> {
         threshold: 0.1,
         asynch: true,
         numResults: 1);
-    print('Recognitions: $recognitions');
     if (recognitions != null && recognitions.isNotEmpty) {
       for (var element in recognitions) {
         setState(() {
