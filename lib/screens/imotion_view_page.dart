@@ -15,16 +15,16 @@ class EmotionViewPage extends StatefulWidget {
 class _EmotionViewPageState extends State<EmotionViewPage> {
   Icon getEmotionIcon(String emotion) {
     switch (emotion) {
-      case 'Happy':
+      case 'Happy' || '0 Happy':
         return Icon(Icons.sentiment_very_satisfied,
             color: Colors.amber.shade500, size: 80);
-      case 'Sad':
+      case 'Sad' || '1 Sad':
         return Icon(Icons.sentiment_very_dissatisfied,
             color: Colors.amber.shade500, size: 80);
-      case 'Surprise':
+      case 'Surprise' || '2 Surprise':
         return Icon(Icons.sentiment_satisfied_alt,
             color: Colors.amber.shade500, size: 80);
-      case 'Angry':
+      case 'Angry' || '3 Angry':
         return Icon(Icons.sentiment_very_dissatisfied,
             color: Colors.red.shade500, size: 80);
       default:
