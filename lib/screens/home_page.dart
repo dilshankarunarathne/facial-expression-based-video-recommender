@@ -39,6 +39,8 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _image = File(image!.path);
     });
+
+    runModelOnImage(_image);
   }
 
   @override
