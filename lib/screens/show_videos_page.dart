@@ -15,7 +15,9 @@ class _ShowVideosState extends State<ShowVideos> {
   Map<String, String> emotionToVideo = {
     'Happy': 'https://www.youtube.com/watch?v=5qap5aO4i9A',
     'Sad': 'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
-    // Add more mappings
+    'Surprise': 'https://www.youtube.com/watch?v=5qap5aO4i9A',
+    'Angry': 'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
+    'Unknown': 'https://www.youtube.com/watch?v=5qap5aO4i9A',
   };
 
   @override
