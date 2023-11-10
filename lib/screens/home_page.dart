@@ -7,7 +7,6 @@ import 'package:video_filter/controllers/auth_controlller.dart';
 import 'package:video_filter/custom-widgets/custom_button.dart';
 import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/imotion_view_page.dart';
-
 import 'package:tflite/tflite.dart';
 
 class HomePage extends StatefulWidget {
