@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
     if (recognitions != null && recognitions.isNotEmpty) {
       for (var element in recognitions) {
         setState(() {
-          output = element['label'];
+          output = element['label'].split(' ')[1];
         });
       }
     }
