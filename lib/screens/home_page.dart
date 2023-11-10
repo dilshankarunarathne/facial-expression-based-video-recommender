@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future imageClassification(File image) async {
+    output = "Unknown";
     var recognitions = await Tflite.runModelOnImage(
         path: _image!.path,
         imageMean: 127.5,
@@ -51,13 +52,14 @@ class _HomePageState extends State<HomePage> {
         threshold: 0.1,
         asynch: true,
         numResults: 1);
-    for (var element in recognitions!) {
-      setState(() {
-        output = element['label'];
-      });
+    print('Recognitions: $recognitions');
+    if (recognitions != null && recognitions.isNotEmpty) {
+      for (var element in recognitions) {
+        setState(() {
+          output = element['label'];
+        });
+      }
     }
-
-    print(output);
   }
 
   @override
@@ -162,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                       loadModel();
                       imageClassification(_image!);
                       Future.delayed(
-                        const Duration(seconds: 4),
+                        const Duration(seconds: 2),
                         () {
                           CircularIndicator(isVisible: false);
                           Navigator.push(
