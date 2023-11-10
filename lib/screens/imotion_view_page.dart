@@ -37,6 +37,7 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
 
   @override
   Widget build(BuildContext context) {
+    
     final size = MediaQuery.of(context).size;
     final emotion = widget.output != null && widget.output!.isNotEmpty
         ? widget.output

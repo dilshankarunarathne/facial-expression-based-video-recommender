@@ -64,6 +64,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return WillPopScope(
       onWillPop: () async {
         SystemNavigator.pop();
@@ -160,8 +161,8 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             );
-                       loadModel();
-                          imageClassification(_image!);
+                      loadModel();
+                      imageClassification(_image!);
                       Future.delayed(
                         const Duration(seconds: 4),
                         () {

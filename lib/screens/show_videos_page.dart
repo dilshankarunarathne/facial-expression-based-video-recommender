@@ -82,9 +82,9 @@ class _ShowVideosState extends State<ShowVideos> {
           body: Column(
             children: [
               YoutubePlayer(
-                controller: _controller,
-                showVideoProgressIndicator: true,
-              ),
+                  controller: _controller,
+                  showVideoProgressIndicator: true,
+                  aspectRatio: 16 / 9),
               Expanded(
                 child: ListView.builder(
                   itemCount: videos.length,
