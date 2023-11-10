@@ -36,7 +36,7 @@ class _ShowVideosState extends State<ShowVideos> {
     ],
     'Angry': [
       'https://www.youtube.com/watch?v=Jx6H_mq8c9o',
-      'https://www.youtube.com/watch?v=5qap5aO4i9A',
+      'https://www.youtube.com/watch?v=wAQtBS4zhy0',
       'https://www.youtube.com/watch?v=5qap5aO4i9A',
       'https://www.youtube.com/watch?v=5qap5aO4i9A',
       'https://www.youtube.com/watch?v=5qap5aO4i9A',
