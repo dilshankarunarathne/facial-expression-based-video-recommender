@@ -4,6 +4,8 @@ import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/show_videos_page.dart';
 
 class EmotionViewPage extends StatefulWidget {
+  final List<dynamic>? output;
+
   const EmotionViewPage({super.key});
 
   @override
