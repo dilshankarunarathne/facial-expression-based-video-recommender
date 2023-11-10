@@ -67,7 +67,7 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        getEmotionIcon(emotion),
+                        getEmotionIcon(emotion!),
                         CustomPoppinsText(
                             text: emotion,
                             color: Colors.white,
