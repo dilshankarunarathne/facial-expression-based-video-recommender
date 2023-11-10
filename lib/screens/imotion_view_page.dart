@@ -54,7 +54,7 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                           size: 80,
                         ),
                         CustomPoppinsText(
-                            text: "Happy Mood",
+                            text: emotion,
                             color: Colors.white,
                             fsize: 35,
                             fweight: FontWeight.w500)
