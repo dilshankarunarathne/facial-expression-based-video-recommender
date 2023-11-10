@@ -156,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  const EmotionViewPage(emotion: output),
+                                  const EmotionViewPage(output: output),
                             ));
                   },
                   text: "Check Image",
