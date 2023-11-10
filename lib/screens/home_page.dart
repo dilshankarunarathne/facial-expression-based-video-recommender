@@ -54,6 +54,8 @@ class _HomePageState extends State<HomePage> {
       threshold: 0.2, // the output score threshold
       asynch: true,
     );
+
+    print(output);
   }
 
   @override
