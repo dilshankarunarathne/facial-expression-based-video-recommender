@@ -55,7 +55,7 @@ class _ShowVideosState extends State<ShowVideos> {
     String videoUrl = emotionToVideo[widget.output![0]["label"]]![0] ?? '';
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(videoUrl)!,
-      flags: YoutubePlayerFlags(
+      flags: const YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
       ),
