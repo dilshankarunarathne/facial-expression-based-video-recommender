@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Video Filter',
+        title: 'Emotion based Video Recommender',
         theme: ThemeData(),
         home: const SplashScreen());
   }
