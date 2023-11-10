@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ShowVideos extends StatefulWidget {
-  final List<dynamic>? output;
+  final String? output;
 
   const ShowVideos({Key? key, required this.output}) : super(key: key);
 
@@ -52,7 +52,7 @@ class _ShowVideosState extends State<ShowVideos> {
   @override
   void initState() {
     super.initState();
-    String videoUrl = emotionToVideo[widget.output![0]["label"]]![0] ?? '';
+    String videoUrl = emotionToVideo[widget.output]![0] ?? '';
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(videoUrl)!,
       flags: const YoutubePlayerFlags(
@@ -64,7 +64,7 @@ class _ShowVideosState extends State<ShowVideos> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> videos = emotionToVideo[widget.output![0]["label"]]!;
+    List<String> videos = emotionToVideo[widget.output!]!;
     return Scaffold(
       body: Column(
         children: [
