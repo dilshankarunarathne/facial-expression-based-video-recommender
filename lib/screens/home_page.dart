@@ -21,6 +21,19 @@ class _HomePageState extends State<HomePage> {
 
   final imagePicker = ImagePicker();
 
+  @override
+  void initState() {
+    super.initState();
+    loadModel();
+  }
+
+  Future loadModel() async {
+    await Tflite.loadModel(
+      model: "assets/model.tflite",
+      labels: "assets/labels.txt",
+    );
+  }
+
   Future getImage() async {
     final image = await imagePicker.pickImage(source: ImageSource.camera);
     setState(() {
