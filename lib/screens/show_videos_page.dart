@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ShowVideos extends StatefulWidget {
   final List<dynamic>? output;
@@ -10,24 +11,53 @@ class ShowVideos extends StatefulWidget {
 }
 
 class _ShowVideosState extends State<ShowVideos> {
+  late YoutubePlayerController _controller;
+  Map<String, String> emotionToVideo = {
+    'Happy': 'https://www.youtube.com/watch?v=5qap5aO4i9A',
+    'Sad': 'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
+    // Add more mappings
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    String videoUrl = emotionToVideo[widget.output![0]["label"]] ?? '';
+    _controller = YoutubePlayerController(
+      initialVideoId: YoutubePlayer.convertUrlToId(videoUrl)!,
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
         shrinkWrap: true,
-        itemCount: 10,
+        itemCount: 1,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.all(4.0),
             child: Container(
-              height: 100,
+              height: 200,
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10))),
-              child: const Card(elevation: 8, child: Text("Videos")),
+              child: YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: true,
+              ),
             ),
           );
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 }
