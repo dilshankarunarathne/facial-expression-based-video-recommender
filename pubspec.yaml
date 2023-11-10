@@ -74,6 +74,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - lib/assets/download.png
+    - lib/assets/model.tflite
+    - lib/assets/labels.txt
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
