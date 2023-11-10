@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 import 'package:video_filter/auth/sign_in_page.dart';
 import 'package:video_filter/screens/home_page.dart';
+
+import '../custom-widgets/circular_indicator.dart';
 
 class AuthController {
   //Check auth state
@@ -44,17 +47,47 @@ class AuthController {
   //Sign In to usr account
 
   static Future<void> signInUser(
-      {required String emailAddress, required String password}) async {
+      {required String emailAddress,
+      required String password,
+      required BuildContext context}) async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularIndicator(isVisible: true),
+        );
+      },
+    );
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
       Logger().i(credential.user!.uid);
       Logger().i("User Signed In");
+      CircularIndicator(isVisible: false);
+
+      Fluttertoast.showToast(
+          msg: "Successfully Signed In",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey.shade800,
+          textColor: Colors.white,
+          fontSize: 16.0);
     } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+      } else {
+        Fluttertoast.showToast(
+            msg: "Please Check Email & Password",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
     }
   }
@@ -66,6 +99,7 @@ class AuthController {
     required String password,
   }) async {
     try {
+      CircularIndicator(isVisible: false);
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
         email: email,
@@ -74,15 +108,58 @@ class AuthController {
           .then((value) {
         addUser(value.user!.uid, email);
       });
+      Logger().i('Successfully Created Account');
+      Fluttertoast.showToast(
+          msg: "Successfully Created Account",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey.shade800,
+          textColor: Colors.white,
+          fontSize: 16.0);
 
       Logger().i(credential.user!.uid);
     } on FirebaseAuthException catch (e) {
+      CircularIndicator(isVisible: false);
       if (e.code == 'weak-password') {
         Logger().e('The password provided is too weak.');
+        Fluttertoast.showToast(
+            msg: "The password provided is too weak.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       } else if (e.code == 'email-already-in-use') {
         Logger().e('The account already exists for that email.');
+        Fluttertoast.showToast(
+            msg: "The account already exists for that email.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       } else if (e.code == 'invalid-email') {
         Logger().e("Invalid Email");
+        Fluttertoast.showToast(
+            msg: "Invalid Email.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      } else {
+        Fluttertoast.showToast(
+            msg: "Sign Up Failed.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 2,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       }
     } catch (e) {
       Logger().e(e);

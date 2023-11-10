@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_filter/screens/home_page.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ShowVideos extends StatefulWidget {
@@ -66,28 +67,41 @@ class _ShowVideosState extends State<ShowVideos> {
   @override
   Widget build(BuildContext context) {
     List<String> videos = emotionToVideo[widget.output!]!;
-    return Scaffold(
-      body: Column(
-        children: [
-          YoutubePlayer(
-            controller: _controller,
-            showVideoProgressIndicator: true,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: videos.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text('Video ${index + 1}'),
-                  onTap: () {
-                    String videoUrl = videos[index];
-                    _controller.load(YoutubePlayer.convertUrlToId(videoUrl)!);
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomePage(),
+            ));
+        return true;
+      },
+      child: SafeArea(
+        child: Scaffold(
+          body: Column(
+            children: [
+              YoutubePlayer(
+                controller: _controller,
+                showVideoProgressIndicator: true,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: videos.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text('Video ${index + 1}'),
+                      onTap: () {
+                        String videoUrl = videos[index];
+                        _controller
+                            .load(YoutubePlayer.convertUrlToId(videoUrl)!);
+                      },
+                    );
                   },
-                );
-              },
-            ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

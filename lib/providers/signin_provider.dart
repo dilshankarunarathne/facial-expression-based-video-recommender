@@ -18,13 +18,14 @@ class SignInProvider extends ChangeNotifier {
 
 //Sign In user
 
-  Future<void> signInUser() async {
+  Future<void> signInUser(BuildContext context) async {
     if (_emailController.text.isEmpty) {
       Logger().e("Check Your Email");
     } else if (_passwordController.text.isEmpty) {
       Logger().e("Check Your Password");
     } else {
       AuthController.signInUser(
+              context: context,
               emailAddress: _emailController.text,
               password: _passwordController.text)
           .then((value) {
@@ -47,7 +48,7 @@ class SignInProvider extends ChangeNotifier {
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.SNACKBAR,
             timeInSecForIosWeb: 5,
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.blueAccent,
             textColor: Colors.white,
             fontSize: 16.0);
         Navigator.push(
