@@ -11,6 +11,11 @@ import 'package:video_filter/screens/imotion_view_page.dart';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
 
+await Tflite.loadModel(
+  model: "assets/model.tflite",
+  labels: "assets/labels.txt",
+);
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
