@@ -18,10 +18,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   File? _image;
-
   final imagePicker = ImagePicker();
+  late String output;
 
-  var emotion;
+  Future getImage() async {
+    final image = await imagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = File(image!.path);
+    });
+  }
 
   @override
   void initState() {
@@ -30,19 +35,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future loadModel() async {
-    await Tflite.loadModel(
-      model: "lib/assets/model.tflite",
-      labels: "lib/assets/labels.txt",
-    );
-  }
+    Tflite.close();
 
-  Future getImage() async {
-    final image = await imagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = File(image!.path);
-    });
-
-    runModelOnImage(_image);
+    (await Tflite.loadModel(
+        model: 'lib/assets/model.tflite', labels: 'lib/assets/labels.txt'))!;
   }
 
   Future runModelOnImage(File? image) async {
