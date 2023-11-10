@@ -7,6 +7,7 @@ import 'package:video_filter/controllers/auth_controlller.dart';
 import 'package:video_filter/custom-widgets/custom_button.dart';
 import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/imotion_view_page.dart';
+import 'package:tflite/tflite.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,11 +21,49 @@ class _HomePageState extends State<HomePage> {
 
   final imagePicker = ImagePicker();
 
+  var output = null;
+
+  @override
+  void initState() {
+    super.initState();
+    loadModel();
+  }
+
+  Future loadModel() async {
+    await Tflite.loadModel(
+      model: "assets/model.tflite",
+      labels: "assets/labels.txt",
+    );
+  }
+
   Future getImage() async {
     final image = await imagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       _image = File(image!.path);
     });
+
+    runModelOnImage(_image);
+  }
+
+  Future runModelOnImage(File? image) async {
+    if (image == null) return;
+
+    output = await Tflite.runModelOnImage(
+      path: image.path,
+      imageMean: 0.0, // depends on your model
+      imageStd: 255.0, // depends on your model
+      numResults: 4, // the number of output classes
+      threshold: 0.2, // the output score threshold
+      asynch: true,
+    );
+
+    print(output);
+  }
+
+  @override
+  void dispose() {
+    Tflite.close();
+    super.dispose();
   }
 
   @override
@@ -43,9 +82,11 @@ class _HomePageState extends State<HomePage> {
                 fweight: FontWeight.w600),
           ),
           actions: [
-            IconButton(onPressed: () {
-              AuthController.signOutUser();
-            }, icon: const Icon(Icons.logout))
+            IconButton(
+                onPressed: () {
+                  AuthController.signOutUser();
+                },
+                icon: const Icon(Icons.logout))
           ],
         ),
         body: Stack(
@@ -114,7 +155,8 @@ class _HomePageState extends State<HomePage> {
                         : Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const EmotionViewPage(),
+                              builder: (context) =>
+                                  EmotionViewPage(output: output),
                             ));
                   },
                   text: "Check Image",
