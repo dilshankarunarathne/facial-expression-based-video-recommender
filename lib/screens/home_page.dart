@@ -8,6 +8,9 @@ import 'package:video_filter/custom-widgets/custom_button.dart';
 import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/imotion_view_page.dart';
 
+import 'package:tflite/tflite.dart';
+import 'package:image_picker/image_picker.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -43,9 +46,11 @@ class _HomePageState extends State<HomePage> {
                 fweight: FontWeight.w600),
           ),
           actions: [
-            IconButton(onPressed: () {
-              AuthController.signOutUser();
-            }, icon: const Icon(Icons.logout))
+            IconButton(
+                onPressed: () {
+                  AuthController.signOutUser();
+                },
+                icon: const Icon(Icons.logout))
           ],
         ),
         body: Stack(
