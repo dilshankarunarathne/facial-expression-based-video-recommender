@@ -21,6 +21,8 @@ class _HomePageState extends State<HomePage> {
 
   final imagePicker = ImagePicker();
 
+  var emotion;
+
   @override
   void initState() {
     super.initState();
@@ -54,6 +56,8 @@ class _HomePageState extends State<HomePage> {
       threshold: 0.2,
       asynch: true,
     );
+
+    emotion = output;
   }
 
   @override
@@ -152,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  EmotionViewPage(output: output),
+                                  EmotionViewPage(output: emotion),
                             ));
                   },
                   text: "Check Image",
