@@ -13,6 +13,25 @@ class EmotionViewPage extends StatefulWidget {
 }
 
 class _EmotionViewPageState extends State<EmotionViewPage> {
+  Icon getEmotionIcon(String emotion) {
+    switch (emotion) {
+      case 'Happy':
+        return Icon(Icons.sentiment_very_satisfied,
+            color: Colors.amber.shade500, size: 80);
+      case 'Sad':
+        return Icon(Icons.sentiment_very_dissatisfied,
+            color: Colors.amber.shade500, size: 80);
+      case 'Surprise':
+        return Icon(Icons.sentiment_satisfied_alt,
+            color: Colors.amber.shade500, size: 80);
+      case 'Angry':
+        return Icon(Icons.sentiment_very_dissatisfied,
+            color: Colors.red.shade500, size: 80);
+      default:
+        return Icon(Icons.help_outline, color: Colors.amber.shade500, size: 80);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
