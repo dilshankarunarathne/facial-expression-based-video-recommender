@@ -36,7 +36,7 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final emotion = widget.output != null && widget.output!.isNotEmpty
-        ? widget.output![0]["label"]
+        ? widget.output
         : "Unknown";
 
     return SafeArea(
