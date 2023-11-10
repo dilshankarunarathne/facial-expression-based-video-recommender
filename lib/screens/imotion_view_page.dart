@@ -7,7 +7,7 @@ import 'package:video_filter/screens/show_videos_page.dart';
 import '../custom-widgets/circular_indicator.dart';
 
 class EmotionViewPage extends StatefulWidget {
-  final List<dynamic>? output;
+  final String? output;
 
   const EmotionViewPage({Key? key, required this.output}) : super(key: key);
 
@@ -18,16 +18,16 @@ class EmotionViewPage extends StatefulWidget {
 class _EmotionViewPageState extends State<EmotionViewPage> {
   Icon getEmotionIcon(String emotion) {
     switch (emotion) {
-      case 'Happy':
+      case 'Happy' || '0 Happy':
         return Icon(Icons.sentiment_very_satisfied,
             color: Colors.amber.shade500, size: 80);
-      case 'Sad':
+      case 'Sad' || '1 Sad':
         return Icon(Icons.sentiment_very_dissatisfied,
             color: Colors.amber.shade500, size: 80);
-      case 'Surprise':
+      case 'Surprise' || '2 Surprise':
         return Icon(Icons.sentiment_satisfied_alt,
             color: Colors.amber.shade500, size: 80);
-      case 'Angry':
+      case 'Angry' || '3 Angry':
         return Icon(Icons.sentiment_very_dissatisfied,
             color: Colors.red.shade500, size: 80);
       default:
@@ -39,7 +39,7 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final emotion = widget.output != null && widget.output!.isNotEmpty
-        ? widget.output![0]["label"]
+        ? widget.output
         : "Unknown";
 
     return WillPopScope(
@@ -65,6 +65,7 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                   color: Colors.black.withOpacity(0.3),
                 ),
               ),
+<<<<<<< HEAD
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -87,6 +88,30 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                               fweight: FontWeight.w500)
                         ],
                       ),
+=======
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: size.height * 0.5,
+                    width: size.width * 0.8,
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade900,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20))),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        getEmotionIcon(emotion!),
+                        CustomPoppinsText(
+                            text: emotion,
+                            color: Colors.white,
+                            fsize: 35,
+                            fweight: FontWeight.w500)
+                      ],
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
                     ),
                     const SizedBox(
                       height: 20,

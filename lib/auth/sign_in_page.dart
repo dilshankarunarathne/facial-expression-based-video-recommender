@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:video_filter/auth/forgotpwd_page.dart';
 import 'package:video_filter/auth/signup_page.dart';
+import 'package:video_filter/custom-widgets/circular_indicator.dart';
 import 'package:video_filter/providers/signin_provider.dart';
 
 import '../custom-widgets/auth_background.dart';

@@ -6,11 +6,15 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 import 'package:video_filter/controllers/auth_controlller.dart';
+import 'package:video_filter/custom-widgets/circular_indicator.dart';
 import 'package:video_filter/custom-widgets/custom_button.dart';
 import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/imotion_view_page.dart';
+<<<<<<< HEAD
 
 import '../custom-widgets/circular_indicator.dart';
+=======
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,10 +25,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   File? _image;
-
+  late String output;
   final imagePicker = ImagePicker();
 
+<<<<<<< HEAD
   var output;
+=======
+  Future getImage() async {
+    final image = await imagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = File(image!.path);
+    });
+  }
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
 
   @override
   void initState() {
@@ -33,40 +46,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future loadModel() async {
-    await Tflite.loadModel(
-      model: "assets/model.tflite",
-      labels: "assets/labels.txt",
-    );
-  }
-
-  Future getImage() async {
-    final image = await imagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = File(image!.path);
-    });
-
-    runModelOnImage(_image);
-  }
-
-  Future runModelOnImage(File? image) async {
-    if (image == null) return;
-
-    output = await Tflite.runModelOnImage(
-      path: image.path,
-      imageMean: 0.0, // depends on your model
-      imageStd: 255.0, // depends on your model
-      numResults: 4, // the number of output classes
-      threshold: 0.2, // the output score threshold
-      asynch: true,
-    );
-
-    print(output);
-  }
-
-  @override
-  void dispose() {
     Tflite.close();
-    super.dispose();
+
+    (await Tflite.loadModel(
+        model: 'lib/assets/model.tflite', labels: 'lib/assets/labels.txt'))!;
+  }
+
+  Future imageClassification(File image) async {
+    output = "Unknown";
+    var recognitions = await Tflite.runModelOnImage(
+        path: _image!.path,
+        imageMean: 127.5,
+        imageStd: 127.5,
+        threshold: 0.1,
+        asynch: true,
+        numResults: 1);
+    if (recognitions != null && recognitions.isNotEmpty) {
+      for (var element in recognitions) {
+        setState(() {
+          output = element['label'].split(' ')[1];
+        });
+      }
+    }
   }
 
   @override
@@ -92,7 +93,11 @@ class _HomePageState extends State<HomePage> {
             actions: [
               IconButton(
                   onPressed: () {
+<<<<<<< HEAD
                     AuthController.signOutUser();
+=======
+                    AuthController.signOutUser(context);
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
                   },
                   icon: const Icon(Icons.logout))
             ],
@@ -168,8 +173,15 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             );
+<<<<<<< HEAD
                       Future.delayed(
                         const Duration(seconds: 4),
+=======
+                      loadModel();
+                      imageClassification(_image!);
+                      Future.delayed(
+                        const Duration(seconds: 2),
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
                         () {
                           CircularIndicator(isVisible: false);
                           Navigator.push(

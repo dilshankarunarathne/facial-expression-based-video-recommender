@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
 import 'package:video_filter/auth/sign_in_page.dart';
+import 'package:video_filter/custom-widgets/circular_indicator.dart';
 import 'package:video_filter/screens/home_page.dart';
 
 import '../custom-widgets/circular_indicator.dart';
@@ -29,8 +32,9 @@ class AuthController {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomePage(),
+                builder: (context) => HomePage(),
               ));
+
           print('User is signed in!');
         }
       });
@@ -39,8 +43,25 @@ class AuthController {
 
   //Sign out user
 
-  static Future<void> signOutUser() async {
+  static Future<void> signOutUser(BuildContext context) async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularIndicator(isVisible: true),
+        );
+      },
+    );
     await FirebaseAuth.instance.signOut();
+    CircularIndicator(isVisible: false);
+    Fluttertoast.showToast(
+        msg: "Signed Out",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey.shade800,
+        textColor: Colors.white,
+        fontSize: 16.0);
     Logger().i("User logout");
   }
 
@@ -59,12 +80,16 @@ class AuthController {
       },
     );
     try {
-      final credential = await FirebaseAuth.instance
+      FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
-      Logger().i(credential.user!.uid);
-      Logger().i("User Signed In");
       CircularIndicator(isVisible: false);
 
+      Logger().i("User Signed In");
+<<<<<<< HEAD
+      CircularIndicator(isVisible: false);
+
+=======
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
       Fluttertoast.showToast(
           msg: "Successfully Signed In",
           toastLength: Toast.LENGTH_SHORT,
@@ -77,11 +102,24 @@ class AuthController {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
+        Fluttertoast.showToast(
+            msg: "No user found for that email.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
+<<<<<<< HEAD
       } else {
         Fluttertoast.showToast(
             msg: "Please Check Email & Password",
+=======
+        Fluttertoast.showToast(
+            msg: "Wrong password provided for that user.",
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
@@ -100,7 +138,11 @@ class AuthController {
   }) async {
     try {
       CircularIndicator(isVisible: false);
+<<<<<<< HEAD
       final credential = await FirebaseAuth.instance
+=======
+      await FirebaseAuth.instance
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
           .createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -118,7 +160,15 @@ class AuthController {
           textColor: Colors.white,
           fontSize: 16.0);
 
-      Logger().i(credential.user!.uid);
+      Logger().i('Successfully Created Account');
+      Fluttertoast.showToast(
+          msg: "Successfully Created Account",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.grey.shade800,
+          textColor: Colors.white,
+          fontSize: 16.0);
     } on FirebaseAuthException catch (e) {
       CircularIndicator(isVisible: false);
       if (e.code == 'weak-password') {
@@ -144,6 +194,7 @@ class AuthController {
       } else if (e.code == 'invalid-email') {
         Logger().e("Invalid Email");
         Fluttertoast.showToast(
+<<<<<<< HEAD
             msg: "Invalid Email.",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
@@ -154,6 +205,9 @@ class AuthController {
       } else {
         Fluttertoast.showToast(
             msg: "Sign Up Failed.",
+=======
+            msg: "Invalid Email",
+>>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 2,
