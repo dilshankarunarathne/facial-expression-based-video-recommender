@@ -31,8 +31,8 @@ class _HomePageState extends State<HomePage> {
 
   Future loadModel() async {
     await Tflite.loadModel(
-      model: "assets/model.tflite",
-      labels: "assets/labels.txt",
+      model: "lib/assets/model.tflite",
+      labels: "lib/assets/labels.txt",
     );
   }
 
