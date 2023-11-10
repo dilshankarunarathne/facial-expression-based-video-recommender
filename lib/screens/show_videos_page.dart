@@ -4,7 +4,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class ShowVideos extends StatefulWidget {
   final List<dynamic>? output;
 
-  const ShowVideos({Key? key, this.output}) : super(key: key);
+  const ShowVideos({Key? key, required this.output}) : super(key: key);
 
   @override
   State<ShowVideos> createState() => _ShowVideosState();
