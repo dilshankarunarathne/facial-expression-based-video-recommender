@@ -83,7 +83,6 @@ class AuthController {
       CircularIndicator(isVisible: false);
 
       Logger().i("User Signed In");
-      CircularIndicator(isVisible: false);
 
       Fluttertoast.showToast(
           msg: "Successfully Signed In",
@@ -128,16 +127,6 @@ class AuthController {
           .then((value) {
         addUser(value.user!.uid, email);
       });
-      Logger().i('Successfully Created Account');
-      Fluttertoast.showToast(
-          msg: "Successfully Created Account",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.grey.shade800,
-          textColor: Colors.white,
-          fontSize: 16.0);
-
       Logger().i('Successfully Created Account');
       Fluttertoast.showToast(
           msg: "Successfully Created Account",
