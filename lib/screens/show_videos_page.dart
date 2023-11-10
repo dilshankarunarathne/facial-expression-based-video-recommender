@@ -12,18 +12,22 @@ class ShowVideos extends StatefulWidget {
 
 class _ShowVideosState extends State<ShowVideos> {
   late YoutubePlayerController _controller;
-  Map<String, String> emotionToVideo = {
-    'Happy': 'https://www.youtube.com/watch?v=5qap5aO4i9A',
-    'Sad': 'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
-    'Surprise': 'https://www.youtube.com/watch?v=5qap5aO4i9A',
-    'Angry': 'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
-    'Unknown': 'https://www.youtube.com/watch?v=5qap5aO4i9A',
+  Map<String, List<String>> emotionToVideo = {
+    'Happy': [
+      'https://www.youtube.com/watch?v=5qap5aO4i9A',
+      // Add 4 more URLs for 'Happy'
+    ],
+    'Sad': [
+      'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
+      // Add 4 more URLs for 'Sad'
+    ],
+    // Add more mappings
   };
 
   @override
   void initState() {
     super.initState();
-    String videoUrl = emotionToVideo[widget.output![0]["label"]] ?? '';
+    String videoUrl = emotionToVideo[widget.output![0]["label"]]![0] ?? '';
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(videoUrl)!,
       flags: YoutubePlayerFlags(
@@ -35,6 +39,7 @@ class _ShowVideosState extends State<ShowVideos> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> videos = emotionToVideo[widget.output![0]["label"]]!;
     return Scaffold(
       body: Column(
         children: [
@@ -44,13 +49,12 @@ class _ShowVideosState extends State<ShowVideos> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: emotionToVideo.length,
+              itemCount: videos.length,
               itemBuilder: (context, index) {
-                String title = emotionToVideo.keys.elementAt(index);
                 return ListTile(
-                  title: Text(title),
+                  title: Text('Video ${index + 1}'),
                   onTap: () {
-                    String videoUrl = emotionToVideo[title] ?? '';
+                    String videoUrl = videos[index];
                     _controller.load(YoutubePlayer.convertUrlToId(videoUrl)!);
                   },
                 );
