@@ -10,11 +10,6 @@ import 'package:video_filter/custom-widgets/circular_indicator.dart';
 import 'package:video_filter/custom-widgets/custom_button.dart';
 import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/imotion_view_page.dart';
-<<<<<<< HEAD
-
-import '../custom-widgets/circular_indicator.dart';
-=======
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,16 +23,12 @@ class _HomePageState extends State<HomePage> {
   late String output;
   final imagePicker = ImagePicker();
 
-<<<<<<< HEAD
-  var output;
-=======
   Future getImage() async {
     final image = await imagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       _image = File(image!.path);
     });
   }
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
 
   @override
   void initState() {
@@ -93,11 +84,7 @@ class _HomePageState extends State<HomePage> {
             actions: [
               IconButton(
                   onPressed: () {
-<<<<<<< HEAD
-                    AuthController.signOutUser();
-=======
                     AuthController.signOutUser(context);
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
                   },
                   icon: const Icon(Icons.logout))
             ],
@@ -173,15 +160,8 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             );
-<<<<<<< HEAD
                       Future.delayed(
                         const Duration(seconds: 4),
-=======
-                      loadModel();
-                      imageClassification(_image!);
-                      Future.delayed(
-                        const Duration(seconds: 2),
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
                         () {
                           CircularIndicator(isVisible: false);
                           Navigator.push(

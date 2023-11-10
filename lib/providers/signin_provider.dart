@@ -26,17 +26,10 @@ class SignInProvider extends ChangeNotifier {
       Logger().e("Check Your Password");
     } else {
       AuthController.signInUser(
-<<<<<<< HEAD
               context: context,
               emailAddress: _emailController.text,
               password: _passwordController.text)
           .then((value) {
-=======
-        emailAddress: _emailController.text,
-        password: _passwordController.text,
-        context: context,
-      ).then((value) {
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
         _emailController.text = "";
         _passwordController.text = "";
       });
@@ -55,11 +48,7 @@ class SignInProvider extends ChangeNotifier {
             msg: "Email sent to ${_recoveryEmailController.text}",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.SNACKBAR,
-<<<<<<< HEAD
             timeInSecForIosWeb: 5,
-=======
-            timeInSecForIosWeb: 3,
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
             backgroundColor: Colors.blueAccent,
             textColor: Colors.white,
             fontSize: 16.0);

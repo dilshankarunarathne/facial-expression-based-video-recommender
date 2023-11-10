@@ -60,8 +60,8 @@ class AuthBackground extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20), // Adjust the radius as needed
-                  topRight: Radius.circular(20), // Adjust the radius as needed
+                  topLeft: Radius.circular(12), // Adjust the radius as needed
+                  topRight: Radius.circular(12), // Adjust the radius as needed
                 ),
               ),
               child: Padding(

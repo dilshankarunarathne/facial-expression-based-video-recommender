@@ -7,7 +7,6 @@ import 'package:video_filter/custom-widgets/circular_indicator.dart';
 import 'package:video_filter/providers/signin_provider.dart';
 
 import '../custom-widgets/auth_background.dart';
-import '../custom-widgets/circular_indicator.dart';
 import '../custom-widgets/custom_button.dart';
 import '../custom-widgets/custom_text.dart';
 import '../custom-widgets/custom_textfield.dart';

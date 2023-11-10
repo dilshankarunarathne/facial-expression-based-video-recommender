@@ -65,7 +65,6 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                   color: Colors.black.withOpacity(0.3),
                 ),
               ),
-<<<<<<< HEAD
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +79,7 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          getEmotionIcon(emotion),
+                          getEmotionIcon(emotion!),
                           CustomPoppinsText(
                               text: emotion,
                               color: Colors.white,
@@ -88,30 +87,6 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                               fweight: FontWeight.w500)
                         ],
                       ),
-=======
-            ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: size.height * 0.5,
-                    width: size.width * 0.8,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.shade900,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20))),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        getEmotionIcon(emotion!),
-                        CustomPoppinsText(
-                            text: emotion,
-                            color: Colors.white,
-                            fsize: 35,
-                            fweight: FontWeight.w500)
-                      ],
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
                     ),
                     const SizedBox(
                       height: 20,

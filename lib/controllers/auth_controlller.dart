@@ -10,8 +10,6 @@ import 'package:video_filter/auth/sign_in_page.dart';
 import 'package:video_filter/custom-widgets/circular_indicator.dart';
 import 'package:video_filter/screens/home_page.dart';
 
-import '../custom-widgets/circular_indicator.dart';
-
 class AuthController {
   //Check auth state
 
@@ -32,7 +30,7 @@ class AuthController {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomePage(),
+                builder: (context) => const HomePage(),
               ));
 
           print('User is signed in!');
@@ -85,11 +83,8 @@ class AuthController {
       CircularIndicator(isVisible: false);
 
       Logger().i("User Signed In");
-<<<<<<< HEAD
       CircularIndicator(isVisible: false);
 
-=======
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
       Fluttertoast.showToast(
           msg: "Successfully Signed In",
           toastLength: Toast.LENGTH_SHORT,
@@ -102,24 +97,11 @@ class AuthController {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
-        Fluttertoast.showToast(
-            msg: "No user found for that email.",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
-<<<<<<< HEAD
       } else {
         Fluttertoast.showToast(
             msg: "Please Check Email & Password",
-=======
-        Fluttertoast.showToast(
-            msg: "Wrong password provided for that user.",
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 1,
@@ -138,11 +120,7 @@ class AuthController {
   }) async {
     try {
       CircularIndicator(isVisible: false);
-<<<<<<< HEAD
       final credential = await FirebaseAuth.instance
-=======
-      await FirebaseAuth.instance
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
           .createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -194,7 +172,6 @@ class AuthController {
       } else if (e.code == 'invalid-email') {
         Logger().e("Invalid Email");
         Fluttertoast.showToast(
-<<<<<<< HEAD
             msg: "Invalid Email.",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
@@ -205,9 +182,6 @@ class AuthController {
       } else {
         Fluttertoast.showToast(
             msg: "Sign Up Failed.",
-=======
-            msg: "Invalid Email",
->>>>>>> 10e1864fc938ca724ad5d09b861d3c1d373b3ed3
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
             timeInSecForIosWeb: 2,
