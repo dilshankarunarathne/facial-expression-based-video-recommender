@@ -39,7 +39,6 @@ class _ShowVideosState extends State<ShowVideos> {
       videoId = YoutubePlayer.convertUrlToId(videoUrl);
     }
 
-    // Initialize _controller with a default video if videoId is null
     _controller = YoutubePlayerController(
       initialVideoId: videoId ??
           'dQw4w9WgXcQ', // Replace 'dQw4w9WgXcQ' with the ID of your default video
