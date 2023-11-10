@@ -22,7 +22,10 @@ class _ShowVideosState extends State<ShowVideos> {
     ],
     'Sad': [
       'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
-      // Add 4 more URLs for 'Sad'
+      'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
+      'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
+      'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
+      'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
     ],
     // Add more mappings
   };
