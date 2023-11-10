@@ -57,6 +57,8 @@ class _HomePageState extends State<HomePage> {
       asynch: true,
     );
 
+    print('Model output: $output');
+
     emotion = output;
   }
 
