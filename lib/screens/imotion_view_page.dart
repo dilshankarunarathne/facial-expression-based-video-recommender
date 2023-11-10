@@ -6,7 +6,7 @@ import 'package:video_filter/screens/show_videos_page.dart';
 class EmotionViewPage extends StatefulWidget {
   final List<dynamic>? output;
 
-  const EmotionViewPage({Key? key, this.output}) : super(key: key);
+  const EmotionViewPage({Key? key, required this.output}) : super(key: key);
 
   @override
   State<EmotionViewPage> createState() => _EmotionViewPageState();
