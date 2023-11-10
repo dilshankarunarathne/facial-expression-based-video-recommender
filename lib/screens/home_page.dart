@@ -160,6 +160,8 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             );
+                       loadModel();
+                          imageClassification(_image!);
                       Future.delayed(
                         const Duration(seconds: 4),
                         () {

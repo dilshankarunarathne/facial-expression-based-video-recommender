@@ -7,9 +7,9 @@ import 'package:video_filter/screens/show_videos_page.dart';
 import '../custom-widgets/circular_indicator.dart';
 
 class EmotionViewPage extends StatefulWidget {
-  final String? output;
+  String? output;
 
-  const EmotionViewPage({Key? key, required this.output}) : super(key: key);
+  EmotionViewPage({Key? key, required this.output}) : super(key: key);
 
   @override
   State<EmotionViewPage> createState() => _EmotionViewPageState();

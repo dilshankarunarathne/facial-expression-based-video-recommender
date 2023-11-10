@@ -66,6 +66,7 @@ class _ShowVideosState extends State<ShowVideos> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     List<String> videos = emotionToVideo[widget.output!]!;
     return WillPopScope(
       onWillPop: () async {
@@ -80,9 +81,12 @@ class _ShowVideosState extends State<ShowVideos> {
         child: Scaffold(
           body: Column(
             children: [
-              YoutubePlayer(
-                controller: _controller,
-                showVideoProgressIndicator: true,
+              SizedBox(
+                width: size.width,
+                child: YoutubePlayer(
+                  controller: _controller,
+                  showVideoProgressIndicator: true,
+                ),
               ),
               Expanded(
                 child: ListView.builder(
