@@ -50,10 +50,10 @@ class _HomePageState extends State<HomePage> {
 
     output = await Tflite.runModelOnImage(
       path: image.path,
-      imageMean: 0.0, // depends on your model
-      imageStd: 255.0, // depends on your model
-      numResults: 4, // the number of output classes
-      threshold: 0.2, // the output score threshold
+      imageMean: 0.0,
+      imageStd: 255.0,
+      numResults: 4,
+      threshold: 0.2,
       asynch: true,
     );
   }
