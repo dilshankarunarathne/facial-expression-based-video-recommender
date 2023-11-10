@@ -9,7 +9,6 @@ import 'package:video_filter/custom-widgets/custom_text.dart';
 import 'package:video_filter/screens/imotion_view_page.dart';
 
 import 'package:tflite/tflite.dart';
-import 'package:image_picker/image_picker.dart';
 
 await Tflite.loadModel(
   model: "assets/model.tflite",
