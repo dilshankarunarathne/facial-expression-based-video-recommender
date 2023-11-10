@@ -15,6 +15,10 @@ class _ShowVideosState extends State<ShowVideos> {
   Map<String, List<String>> emotionToVideo = {
     'Happy': [
       'https://www.youtube.com/watch?v=5qap5aO4i9A',
+      'https://www.youtube.com/watch?v=5qap5aO4i9A',
+      'https://www.youtube.com/watch?v=5qap5aO4i9A',
+      'https://www.youtube.com/watch?v=5qap5aO4i9A',
+      'https://www.youtube.com/watch?v=5qap5aO4i9A',
     ],
     'Sad': [
       'https://www.youtube.com/watch?v=i1jSCpo1Vq0',
