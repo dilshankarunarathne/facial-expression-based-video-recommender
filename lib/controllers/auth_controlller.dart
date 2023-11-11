@@ -78,10 +78,10 @@ class AuthController {
       },
     );
     try {
-      FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
       CircularIndicator(isVisible: false);
-
+      
       Logger().i("User Signed In");
 
       Fluttertoast.showToast(
@@ -108,6 +108,7 @@ class AuthController {
             textColor: Colors.white,
             fontSize: 16.0);
       }
+     
     }
   }
 
@@ -118,7 +119,6 @@ class AuthController {
     required String password,
   }) async {
     try {
-      CircularIndicator(isVisible: false);
       final credential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
         email: email,
@@ -127,6 +127,7 @@ class AuthController {
           .then((value) {
         addUser(value.user!.uid, email);
       });
+      CircularIndicator(isVisible: false);
       Logger().i('Successfully Created Account');
       Fluttertoast.showToast(
           msg: "Successfully Created Account",
@@ -168,16 +169,18 @@ class AuthController {
             backgroundColor: Colors.red,
             textColor: Colors.white,
             fontSize: 16.0);
-      } else {
-        Fluttertoast.showToast(
-            msg: "Sign Up Failed.",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 2,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
       }
+      //else
+      //{
+      //   Fluttertoast.showToast(
+      //       msg: "Sign Up Failed.",
+      //       toastLength: Toast.LENGTH_SHORT,
+      //       gravity: ToastGravity.CENTER,
+      //       timeInSecForIosWeb: 2,
+      //       backgroundColor: Colors.red,
+      //       textColor: Colors.white,
+      //       fontSize: 16.0);
+      // }
     } catch (e) {
       Logger().e(e);
     }
