@@ -91,7 +91,9 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    if (emotion != 'Happy' && emotion != 'Surprise')
+                    if (emotion == 'Sad' ||
+                        emotion == 'Angry' ||
+                        emotion == 'Unknown')
                       CustomButton(
                         size: size,
                         ontap: () {
