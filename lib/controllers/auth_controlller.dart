@@ -81,7 +81,7 @@ class AuthController {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
       CircularIndicator(isVisible: false);
-      
+
       Logger().i("User Signed In");
 
       Fluttertoast.showToast(
@@ -108,7 +108,6 @@ class AuthController {
             textColor: Colors.white,
             fontSize: 16.0);
       }
-     
     }
   }
 
@@ -204,8 +203,25 @@ class AuthController {
   }
 
   //Google Authentication
+  // Future<UserCredential> signInWithGoogle() async {
+  //   // Trigger the authentication flow
+  //   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  Future<UserCredential?> signInWithGoogle() async {
+  //   // Obtain the auth details from the request
+  //   final GoogleSignInAuthentication? googleAuth =
+  //       await googleUser?.authentication;
+
+  //   // Create a new credential
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth?.accessToken,
+  //     idToken: googleAuth?.idToken,
+  //   );
+
+  //   // Once signed in, return the UserCredential
+  //   return await FirebaseAuth.instance.signInWithCredential(credential);
+  // }
+
+  Future<UserCredential?> signInWithGoogle(BuildContext context) async {
     try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -224,7 +240,23 @@ class AuthController {
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
       Logger().e(e);
-      return null;
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Sign-In Failed'),
+            content: Text('Error: $e'),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("OK"))
+            ],
+          );
+        },
+      );
     }
+    return null;
   }
 }

@@ -14,15 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "937429975478-g39ijd6a7eciccqsh1phc27nkev6vsgu.apps.googleusercontent.com",
+          "client_id": "937429975478-9c128a9fuqppp4ctkkd15kt3c790hphk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "lk.altier.video_filter",
-            "certificate_hash": "d84a2783e468bb1c16719f4205819c654b136183"
+            "certificate_hash": "24cae48daf063888c3411619f17025999cf91ab0"
           }
         },
         {
-          "client_id": "937429975478-ef62kml41guninqoa0dt718flm0hc6v8.apps.googleusercontent.com",
+          "client_id": "937429975478-fabd2q7eg80ts3e1i0sj7099igs24h18.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

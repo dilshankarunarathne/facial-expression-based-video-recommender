@@ -174,7 +174,7 @@ class _SignInState extends State<SignIn> {
                             onTap: () {
                               Provider.of<SignInProvider>(context,
                                       listen: false)
-                                  .signInWithGoogle();
+                                  .signInWithGoogle(context);
                             },
                           )
                         ]),

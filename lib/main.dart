@@ -15,7 +15,6 @@ void main() async {
     providers: [
       ChangeNotifierProvider(
         create: (context) => SignUpProvider(),
-        child: const MyApp(),
       ),
       ChangeNotifierProvider(
         create: (context) => SignInProvider(),

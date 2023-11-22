@@ -76,7 +76,7 @@ class SignInProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> signInWithGoogle() async {
-    final credential = await authController.signInWithGoogle();
+  Future<void> signInWithGoogle(BuildContext context) async {
+    final credential = await authController.signInWithGoogle(context);
   }
 }
