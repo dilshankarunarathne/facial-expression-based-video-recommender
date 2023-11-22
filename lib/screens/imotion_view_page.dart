@@ -37,7 +37,6 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     final size = MediaQuery.of(context).size;
     final emotion = widget.output != null && widget.output!.isNotEmpty
         ? widget.output
@@ -92,34 +91,35 @@ class _EmotionViewPageState extends State<EmotionViewPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    CustomButton(
-                      size: size,
-                      ontap: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return Center(
-                              child: CircularIndicator(isVisible: true),
-                            );
-                          },
-                        );
-                        Future.delayed(
-                          const Duration(seconds: 4),
-                          () {
-                            CircularIndicator(isVisible: false);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      ShowVideos(output: emotion),
-                                ));
-                          },
-                        );
-                      },
-                      text: "Next",
-                      buttonColor: Colors.white,
-                      textColor: Colors.grey.shade900,
-                    )
+                    if (emotion != 'Happy' && emotion != 'Surprise')
+                      CustomButton(
+                        size: size,
+                        ontap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Center(
+                                child: CircularIndicator(isVisible: true),
+                              );
+                            },
+                          );
+                          Future.delayed(
+                            const Duration(seconds: 4),
+                            () {
+                              CircularIndicator(isVisible: false);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ShowVideos(output: emotion),
+                                  ));
+                            },
+                          );
+                        },
+                        text: "Next",
+                        buttonColor: Colors.white,
+                        textColor: Colors.grey.shade900,
+                      )
                   ],
                 ),
               )
