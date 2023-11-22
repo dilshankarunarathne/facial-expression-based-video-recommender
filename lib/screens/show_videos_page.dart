@@ -58,6 +58,8 @@ class _ShowVideosState extends State<ShowVideos> with WidgetsBindingObserver {
     List<String> videos = emotionToVideo[widget.output!]!;
     return WillPopScope(
       onWillPop: () async {
+        _controller
+            .pause(); // Pause the video when the user tries to leave the page
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -96,15 +98,15 @@ class _ShowVideosState extends State<ShowVideos> with WidgetsBindingObserver {
   }
 
   @override
-  Future<bool> didPopRoute() async {
-    _controller.pause();
-    return super.didPopRoute();
-  }
-
-  @override
   void dispose() {
     super.dispose();
     _controller.dispose();
     WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  Future<bool> didPopRoute() async {
+    _controller.pause();
+    return super.didPopRoute();
   }
 }
