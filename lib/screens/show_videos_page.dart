@@ -63,6 +63,8 @@ class _ShowVideosState extends State<ShowVideos> with WidgetsBindingObserver {
             MaterialPageRoute(
               builder: (context) => const HomePage(),
             ));
+        _controller.pause();
+
         return true;
       },
       child: SafeArea(
